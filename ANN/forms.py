@@ -1,6 +1,8 @@
 from django import forms
 
 class DataInputForm(forms.Form):
+    patient_id = forms.CharField(max_length=100)
+    
     # Set 1
     radius1 = forms.FloatField()
     texture1 = forms.FloatField()
