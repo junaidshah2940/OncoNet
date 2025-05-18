@@ -6,6 +6,10 @@ name = "pypi"
 [packages]
 django = "*"
 scikit-learn = "*"
+web3 = "*"
+py-solc-x = "*"
+keras = "*"
+tensorflow = "*"
 
 [dev-packages]
 
