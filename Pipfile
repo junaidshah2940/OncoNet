@@ -10,6 +10,7 @@ web3 = "*"
 py-solc-x = "*"
 keras = "*"
 tensorflow = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
