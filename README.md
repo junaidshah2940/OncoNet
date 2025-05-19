@@ -29,7 +29,6 @@ project_root/
 │ ├── init.py 
 │ ├── admin.py 
 │ ├── apps.py 
-│ ├── deploy.py 
 │ ├── blockchain.py 
 │ ├── models.py 
 │ ├── views.py 
@@ -158,8 +157,6 @@ Once you submit the form, the model will classify the result and save the hash o
 - forms.py: Defines the input form for breast cancer data.
 
 - **BC:** Contains the blockchain-related functionality.
-
-- deploy.py: Handles the deployment of the smart contract on the local Ethereum blockchain.
 
 - blockchain.py: Contains the logic for storing and verifying the hash of classification results on the blockchain.
 
