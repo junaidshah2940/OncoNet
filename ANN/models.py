@@ -35,10 +35,9 @@ class BC(models.Model):
 
 class BlockchainRecord(models.Model):
     patient_id = models.CharField(max_length=100)
-    result = models.CharField(max_length=100)
-    contract_address = models.CharField(max_length=42)  # Ethereum addresses are 42 characters long
-    abi = models.TextField()  # ABI JSON string
-    bytecode = models.TextField()  # Bytecode hex string
+    contract_address = models.CharField(max_length=42)
+    abi = models.TextField()
+    bytecode = models.TextField()
 
     timestamp = models.DateTimeField(auto_now_add=True)
 
