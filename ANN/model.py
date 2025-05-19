@@ -18,4 +18,4 @@ def classify_data(data):
     ]).reshape(1, -1)
 
     prediction = model.predict(features)
-    return 'Malignant' if prediction[0][0] > 0.5 else 'Benign'
+    return 'Malignant' if prediction[0][0] < 0.5 else 'Benign'

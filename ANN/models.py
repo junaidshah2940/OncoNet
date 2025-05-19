@@ -1,6 +1,7 @@
 from django.db import models
 
 class BC(models.Model):
+    patient_id = models.IntegerField()
     radius1 = models.FloatField()
     texture1 = models.FloatField()
     perimeter1 = models.FloatField()
@@ -32,3 +33,14 @@ class BC(models.Model):
     symmetry3 = models.FloatField()
     fractal_dimension3 = models.FloatField()
 
+class BlockchainRecord(models.Model):
+    patient_id = models.CharField(max_length=100)
+    result = models.CharField(max_length=100)
+    contract_address = models.CharField(max_length=42)  # Ethereum addresses are 42 characters long
+    abi = models.TextField()  # ABI JSON string
+    bytecode = models.TextField()  # Bytecode hex string
+
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.patient_id} - {self.contract_address}"

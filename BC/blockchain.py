@@ -49,9 +49,11 @@ def record_classification(patient_id, result):
     tx = DataStorage.constructor().build_transaction({
         'from': sender_address,
         'nonce': nonce,
-        'gas': 2000000,
         'gasPrice': w3.to_wei('50', 'gwei')
     })
+
+    gas_estimate = w3.eth.estimate_gas(tx)
+    tx['gas'] = gas_estimate
 
     signed_tx = w3.eth.account.sign_transaction(tx, private_key)
     tx_hash = w3.eth.send_raw_transaction(signed_tx.raw_transaction)

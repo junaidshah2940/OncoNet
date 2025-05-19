@@ -1,40 +1,10 @@
 from django import forms
+from .models import BC
 
-class DataInputForm(forms.Form):
-    patient_id = forms.CharField(max_length=100)
+class DataInputForm(forms.ModelForm):
+    class Meta:
+        model = BC
+        fields = ["patient_id" ,"radius1", "texture1", "perimeter1", "area1", "smoothness1", "compactness1", "concavity1", "concave_points1", "symmetry1", "fractal_dimension1", 
+                  "radius2", "texture2", "perimeter2", "area2", "smoothness2", "compactness2", "concavity2", "concave_points2", "symmetry2", "fractal_dimension2",
+                  "radius3", "texture3", "perimeter3", "area3", "smoothness3", "compactness3", "concavity3", "concave_points3", "symmetry3", "fractal_dimension3",]  
     
-    # Set 1
-    radius1 = forms.FloatField()
-    texture1 = forms.FloatField()
-    perimeter1 = forms.FloatField()
-    area1 = forms.FloatField()
-    smoothness1 = forms.FloatField()
-    compactness1 = forms.FloatField()
-    concavity1 = forms.FloatField()
-    concave_points1 = forms.FloatField()
-    symmetry1 = forms.FloatField()
-    fractal_dimension1 = forms.FloatField()
-
-    # Set 2
-    radius2 = forms.FloatField()
-    texture2 = forms.FloatField()
-    perimeter2 = forms.FloatField()
-    area2 = forms.FloatField()
-    smoothness2 = forms.FloatField()
-    compactness2 = forms.FloatField()
-    concavity2 = forms.FloatField()
-    concave_points2 = forms.FloatField()
-    symmetry2 = forms.FloatField()
-    fractal_dimension2 = forms.FloatField()
-
-    # Set 3
-    radius3 = forms.FloatField()
-    texture3 = forms.FloatField()
-    perimeter3 = forms.FloatField()
-    area3 = forms.FloatField()
-    smoothness3 = forms.FloatField()
-    compactness3 = forms.FloatField()
-    concavity3 = forms.FloatField()
-    concave_points3 = forms.FloatField()
-    symmetry3 = forms.FloatField()
-    fractal_dimension3 = forms.FloatField()
