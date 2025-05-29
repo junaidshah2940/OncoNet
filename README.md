@@ -9,46 +9,14 @@ This project aims to classify breast cancer data into "Malignant" or "Benign" ca
 
 ## Project Structure
 
-project_root/ 
-│ 
-├── ANN/ 
-│ ├── migrations/ 
-│ ├── init.py 
-│ ├── admin.py 
-│ ├── apps.py 
-│ ├── forms.py 
-│ ├── models.py 
-│ ├── model.py 
-│ ├── tests.py 
-│ ├── urls.py 
-│ ├── views.py 
-│ ├── templates/ 
-│   ├── form.html 
-├── BC/ 
-│ ├── migrations/ 
-│ ├── init.py 
-│ ├── admin.py 
-│ ├── apps.py 
-│ ├── blockchain.py 
-│ ├── models.py 
-│ ├── views.py 
-│ ├── tests.py 
-│ ├── contract_abi.json 
-│ ├── contract_address.txt 
-├── OncoNet/ 
-│ ├── init.py 
-│ ├── asgi.py 
-│ ├── settings.py 
-│ ├── urls.py 
-│ ├── views.py  
-│ ├── wsgi.py 
-├── templates/
-│ ├── homepage.html.py 
-├── assets/ 
-│ └── classifier_model.h5 
-│ └── styles.css 
-├── manage.py 
-└── README.md
+- `Onconet/`: Main Django project directory.
+- `ANN/`: Artificial Neural Network app.
+- `BC/`: Blockchain app.
+- `accounts/`: user app.
+- `migrations/`: Django database migrations.
+- `static/`: Static files (CSS, JavaScript).
+- `templates/`: HTML templates.
+- `requirements.txt`: Python dependencies.
 
 ## Features
 
@@ -74,7 +42,7 @@ First, clone the project repository to your local machine.
 
 ```bash
 git clone https://github.com/junaidshah2940/onconet.git
-cd breast-cancer-blockchain
+cd onconet
 ```
 
 ### 2. Install Dependencies
@@ -93,20 +61,18 @@ pip install py-solc-x
 ```
 
 ### 4. Install and Set Up Ganache
-Install Ganache, which is a personal Ethereum blockchain for local development. You can download it from here.
-
-Start Ganache and note the HTTP provider URL (http://127.0.0.1:7545 by default).
-
-### 5. Deploy the Smart Contract
-Run the deployment script to deploy the smart contract on your local Ethereum network (Ganache).
+Install Ganache, which is a personal Ethereum blockchain for local development.
 
 ```bash
-python BC/deploy.py
+npm install -g ganache
+ganache-cli --gasLimit 120000000 --port 8545 --deterministic
 ```
 
-This will deploy the smart contract and save the contract ABI and address in the BC folder.
+- `--gasLimit 120000000`: Sets a higher gas limit for transactions.
+- `--port 8545`: Specifies the port for the blockchain.
+- `--deterministic`: Ensures the same accounts and private keys are generated each time, which is useful for consistent development.
 
-### 6. Run Django Development Server
+### 5. Run Django Development Server
 Finally, run the Django development server to start the web application.
 
 ```bash
