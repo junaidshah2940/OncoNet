@@ -91,23 +91,28 @@
                 </ul>
             </nav>
         </header>
-
-        <div class="container">
-            <h2>Submit Feature Values</h2>
-            <form method="POST">
-                {% csrf_token %} {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}"
-                        >{{ field.label }}:</label
-                    >
-                    {{ field }} {% if field.errors %}
-                    <small class="error">{{ field.errors|striptags }}</small>
-                    {% endif %}
+        <article class="site-form">
+            <h1>Login</h1>
+            <p>
+                Access your account to view past predictions and manage
+                settings.
+            </p>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %} {{ form.non_field_errors }}
+                <div>
+                    {{ form.username.label_tag }} {{ form.username }}
+                    {{form.username.errors }}
                 </div>
-                {% endfor %}
-                <label></label>
-                <input type="submit" name="submit" value="Submit" />
+                <div>
+                    {{ form.password.label_tag }} {{ form.password }}
+                    {{form.password.errors }}
+                </div>
+                <input type="submit" value="Log In" />
             </form>
-        </div>
+            <span
+                >Don't have an account?
+                <a href="{% url 'signup' %}">Sign Up</a></span
+            >
+        </article>
     </body>
 </html>

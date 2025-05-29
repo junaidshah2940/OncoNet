@@ -9,12 +9,95 @@
         <link rel="stylesheet" href="/static/styles.css" />
     </head>
     <body>
-        <div class="container">
+        <header>
+            <div>
+                <svg
+                    width="200"
+                    height="50"
+                    viewBox="0 0 200 50"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <title>OncoNet Logo</title>
+
+                    <defs>
+                        <linearGradient
+                            id="gradientOnco"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="0%"
+                        >
+                            <stop
+                                offset="0%"
+                                style="stop-color: #3b82f6; stop-opacity: 1"
+                            />
+                            <stop
+                                offset="100%"
+                                style="stop-color: #10b981; stop-opacity: 1"
+                            />
+                        </linearGradient>
+                    </defs>
+                    <text
+                        x="10"
+                        y="35"
+                        font-family="Inter, sans-serif"
+                        font-weight="800"
+                        font-size="30"
+                        fill="url(#gradientOnco)"
+                    >
+                        OncoNet
+                    </text>
+
+                    <circle cx="160" cy="20" r="4" fill="#3B82F6" />
+                    <circle cx="180" cy="30" r="4" fill="#10B981" />
+                    <circle cx="160" cy="40" r="4" fill="#3B82F6" />
+
+                    <path
+                        d="M160 20 L180 30 L160 40 L160 20 Z"
+                        stroke="#10B981"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M160 20 Q170 10 180 30"
+                        stroke="#3B82F6"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M160 40 Q170 50 180 30"
+                        stroke="#3B82F6"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                </svg>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'prediction-form' %}">Predictor</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Signup</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        <div class="container" id="result">
             <h2>{{ res }}</h2>
-            <p>Your contract info:</p>
-            <p>{{ result }}</p>
-            <p>{{ contract_address }}</p>
-            <p>{{ patient_id }}</p>
+            <p><b>Patient Id:</b>{{ patient_id }}</p>
+            <p><b>Account Type:</b> Standard User</p>
+            <p><b>Contract Address:</b> {{ contract_address }}</p>
+            <h1 style="margin: 30px 0">Your contract info:</h1>
+            <p><b>Result:</b>{{ result }}</p>
         </div>
     </body>
 </html>

@@ -91,23 +91,13 @@
                 </ul>
             </nav>
         </header>
-
-        <div class="container">
-            <h2>Submit Feature Values</h2>
-            <form method="POST">
-                {% csrf_token %} {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}"
-                        >{{ field.label }}:</label
-                    >
-                    {{ field }} {% if field.errors %}
-                    <small class="error">{{ field.errors|striptags }}</small>
-                    {% endif %}
-                </div>
-                {% endfor %}
-                <label></label>
-                <input type="submit" name="submit" value="Submit" />
-            </form>
-        </div>
+        <h2>Retrieve Result</h2>
+        {% if result %}
+        <p><b>Patient ID:</b> {{ result.patient_id }}</p>
+        <p><b>Prediction:</b> {{ result.result }}</p>
+        {% elif error %}
+        <p style="color: red">{{ error }}</p>
+        {% endif %}
+        <a href="{% url 'profile' %}">Back to Profile</a>
     </body>
 </html>

@@ -9,7 +9,118 @@
         <link rel="stylesheet" href="/static/styles.css" />
     </head>
     <body>
-        <h1>This is the homepage</h1>
-        <p>Welcome to OncoNet</p>
+        <header>
+            <div>
+                <svg
+                    width="200"
+                    height="50"
+                    viewBox="0 0 200 50"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <title>OncoNet Logo</title>
+
+                    <defs>
+                        <linearGradient
+                            id="gradientOnco"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="0%"
+                        >
+                            <stop
+                                offset="0%"
+                                style="stop-color: #3b82f6; stop-opacity: 1"
+                            />
+                            <stop
+                                offset="100%"
+                                style="stop-color: #10b981; stop-opacity: 1"
+                            />
+                        </linearGradient>
+                    </defs>
+                    <text
+                        x="10"
+                        y="35"
+                        font-family="Inter, sans-serif"
+                        font-weight="800"
+                        font-size="30"
+                        fill="url(#gradientOnco)"
+                    >
+                        OncoNet
+                    </text>
+
+                    <circle cx="160" cy="20" r="4" fill="#3B82F6" />
+                    <circle cx="180" cy="30" r="4" fill="#10B981" />
+                    <circle cx="160" cy="40" r="4" fill="#3B82F6" />
+
+                    <path
+                        d="M160 20 L180 30 L160 40 L160 20 Z"
+                        stroke="#10B981"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M160 20 Q170 10 180 30"
+                        stroke="#3B82F6"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M160 40 Q170 50 180 30"
+                        stroke="#3B82F6"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                </svg>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'prediction-form' %}">Predictor</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Signup</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        <article>
+            <h1>Welcome to OncoNet</h1>
+            <p>
+                Our application utilizes Artificial Neural Networks (ANN) to
+                help predict whether a breast mass is malignant or benign based
+                on user-provided diagnostic features. This tool is designed to
+                assist in early detection and provide valuable insights.
+            </p>
+            <p>
+                Please note: This application is for informational purposes only
+                and should not replace professional medical advice.
+            </p>
+            <div>
+                <form action="{% url 'start-prediction' %}" method="post">
+                    {% csrf_token %}
+                    <input
+                        type="submit"
+                        name="prediction"
+                        value="Get Started with Prediction"
+                    />
+                </form>
+                <form action="{% url 'signup' %}" method="post">
+                    {% csrf_token %}
+                    <input
+                        type="submit"
+                        name="signup"
+                        value="Create an Account"
+                    />
+                </form>
+            </div>
+        </article>
     </body>
 </html>

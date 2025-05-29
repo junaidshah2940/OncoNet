@@ -91,23 +91,34 @@
                 </ul>
             </nav>
         </header>
+        <article>
+            <h2>User Profile</h2>
+            <div class="profile">
+                <h3>Account Information</h3>
+                <p><b>Username:</b> {{ user.username }}</p>
+                <p><b>Email:</b> {{ user.email }}</p>
+                <p><b>Account Type:</b> Standard User</p>
+            </div>
 
-        <div class="container">
-            <h2>Submit Feature Values</h2>
-            <form method="POST">
-                {% csrf_token %} {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}"
-                        >{{ field.label }}:</label
-                    >
-                    {{ field }} {% if field.errors %}
-                    <small class="error">{{ field.errors|striptags }}</small>
-                    {% endif %}
-                </div>
-                {% endfor %}
-                <label></label>
-                <input type="submit" name="submit" value="Submit" />
-            </form>
-        </div>
+            <div class="retrieve">
+                <h3>Retrieve Past Predictions</h3>
+                <p>
+                    Enter a Patient ID to view the prediction results associated
+                    with it.
+                </p>
+                <form action="{% url 'retrieve' %}" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <label>Patient ID</label>
+                        <input
+                            type="text"
+                            name="patient_id"
+                            placeholder="e.g., 8400000"
+                        />
+                    </div>
+                    <input type="submit" name="prediction" value="Retrieve" />
+                </form>
+            </div>
+        </article>
     </body>
 </html>
