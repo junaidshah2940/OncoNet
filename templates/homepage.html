@@ -83,7 +83,7 @@
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                     <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'prediction-form' %}">Predictor</a></li>
+                    <li><a href="{% url 'input' %}">Predictor</a></li>
                     {% else %}
                     <li><a href="{% url 'login' %}">Login</a></li>
                     <li><a href="{% url 'signup' %}">Signup</a></li>
@@ -104,7 +104,7 @@
                 and should not replace professional medical advice.
             </p>
             <div>
-                <form action="{% url 'start-prediction' %}" method="post">
+                <form action="{% url 'input' %}" method="post">
                     {% csrf_token %}
                     <input
                         type="submit"

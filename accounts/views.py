@@ -43,7 +43,13 @@ def start_prediction_redirect(request):
         return redirect('prediction-form') 
     else:
         return redirect('login')
-
+    
+def file_redirect(request):
+    if request.user.is_authenticated:
+        return redirect('prediction-file-form') 
+    else:
+        return redirect('login')
+    
 
 def profile(request):
     if request.user.is_authenticated:

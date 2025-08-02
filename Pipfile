@@ -11,6 +11,8 @@ py-solc-x = "*"
 keras = "*"
 tensorflow = "*"
 python-dotenv = "*"
+pandas = "*"
+openpyxl = "*"
 
 [dev-packages]
 

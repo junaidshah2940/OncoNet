@@ -52,3 +52,6 @@ class DataInputForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs['placeholder'] = placeholder_map.get(field, '')
             self.fields[field].widget.attrs['class'] = 'form-input' 
+
+class DataInputFileForm(forms.Form):
+    file = forms.FileField(label="Upload Excel File")

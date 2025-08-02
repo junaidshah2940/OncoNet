@@ -1,0 +1,24 @@
+sequenceDiagram
+    participant User
+    participant WebUI      as Web UI (Django)
+    participant TrainSvc   as Training Module
+    participant SmartCtr   as Smart Contract
+    participant Blockchain as Blockchain Network
+
+    User->>WebUI: Click “Train Model”
+    WebUI->>TrainSvc: start_training()
+    activate TrainSvc
+    TrainSvc->>TrainSvc: load dataset (sklearn)
+    TrainSvc->>TrainSvc: compile & fit Keras model
+    TrainSvc->>TrainSvc: save model file & compute modelHash
+    TrainSvc-->>WebUI: training_complete(modelHash, metrics)
+    deactivate TrainSvc
+
+    WebUI->>SmartCtr: registerModel(modelHash, metrics)
+    activate SmartCtr
+    SmartCtr->>Blockchain: submit transaction
+    Blockchain-->>SmartCtr: tx_receipt
+    SmartCtr-->>WebUI: registration_success(tx_receipt)
+    deactivate SmartCtr
+
+    WebUI-->>User: “Model trained & registered on‐chain!”

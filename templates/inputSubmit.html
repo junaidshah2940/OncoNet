@@ -91,23 +91,23 @@
                 </ul>
             </nav>
         </header>
-
-        <div class="container">
-            <h2>Submit Feature Values</h2>
-            <form method="POST">
-                {% csrf_token %} {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}"
-                        >{{ field.label }}:</label
-                    >
-                    {{ field }} {% if field.errors %}
-                    <small class="error">{{ field.errors|striptags }}</small>
-                    {% endif %}
-                </div>
-                {% endfor %}
-                <label></label>
-                <input type="submit" name="submit" value="Submit" />
-            </form>
-        </div>
+        <article>
+            <h2>AI-powered Diagnostic Assistance For Medical Professionals</h2>
+            <p>Choose Input Method:</p>
+            <div>
+                <form action="{% url 'start-prediction' %}" method="post">
+                    {% csrf_token %}
+                    <input
+                        type="submit"
+                        name="prediction"
+                        value="Manual Input"
+                    />
+                </form>
+                <form action="{% url 'file' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="signup" value="File Upload" />
+                </form>
+            </div>
+        </article>
     </body>
 </html>
