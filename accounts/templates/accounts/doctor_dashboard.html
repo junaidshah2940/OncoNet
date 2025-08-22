@@ -1,0 +1,39 @@
+{% extends 'base_layout.html' %} {% load accounts_extras %} {% block content %}
+        <article class="doctor-dashboard">
+            <div class="profile">
+                <h1>Doctor Dashboard</h1>
+                <h5>Hello Dr. {{ request.user.username }} 👩‍⚕️👨‍⚕️</h5>
+                <div class="sections">
+                    <ul>
+                        <li>
+                            <a href="{% url 'retrieve' %}"
+                                >Retrieve patient data</a
+                            >
+                        </li>
+                        <li>
+                            <a href="{% url 'start-prediction' %}"
+                                >Start prediction</a
+                            >
+                        </li>
+                        <li>
+                            <a href="{% url 'file' %}"
+                                >Upload prediction file</a
+                            >
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <a href="{% url 'start-training' %}"
+                                >Start training</a
+                            >
+                        </li>
+                        <li>
+                            <a href="{% url 'file-training' %}"
+                                >Upload training file</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+{% endblock %}

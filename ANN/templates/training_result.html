@@ -1,0 +1,10 @@
+{% extends 'base_layout.html' %} {% load accounts_extras %} {% block content %}
+        <div class="container" id="result">
+            <h2>Training complete!</h2>
+            <p>
+                <strong>Thank you for your contribution.</strong> Your data just
+                made our model smarter and more accurate.
+            </p>
+            <a href="{% url 'home' %}">Home</a>
+        </div>
+{% endblock %}
