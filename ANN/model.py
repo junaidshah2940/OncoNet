@@ -21,6 +21,7 @@ def classify_data(data):
     return 'Malignant' if prediction[0][0] < 0.5 else 'Benign'
 
 def train_model(data):
+    print(data)
     features = np.array([
         data['radius1'], data['texture1'], data['perimeter1'], data['area1'], data['smoothness1'],
         data['compactness1'], data['concavity1'], data['concave_points1'], data['symmetry1'], data['fractal_dimension1'],

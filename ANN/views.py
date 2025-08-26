@@ -92,8 +92,9 @@ def data_file_form_view_training(request):
             excel_file = request.FILES['file']
             df = pd.read_excel(excel_file)
 
-            first_row = df.iloc[0].to_dict()
-            train_model(first_row)
+            for i in range(df.shape[0]):
+                row = df.iloc[i].to_dict()
+                train_model(row)
 
             return render(request, 'training_result.html')
     else:
