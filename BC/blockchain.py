@@ -6,6 +6,7 @@ from solcx import compile_source, install_solc
 from web3 import Web3
 from dotenv import load_dotenv
 from ANN.models import BlockchainRecord
+from datetime import datetime
 
 
 def record_classification(patient_id, result):
@@ -151,7 +152,7 @@ def record_classification(patient_id, result):
 
     # Store data in contract
     contract = w3.eth.contract(address=contract_address, abi=abi)
-    json_data = json.dumps({"patient_id": patient_id, "result": result})
+    json_data = json.dumps({"patient_id": patient_id, "result": result, "date": datetime.now()})
 
     nonce += 1
     try:
