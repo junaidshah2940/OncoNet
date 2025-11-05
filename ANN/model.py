@@ -2,6 +2,10 @@ from keras.models import load_model
 from django.conf import settings
 import os
 import numpy as np
+import json
+import base64
+import io
+from datetime import datetime
 
 model_path = os.path.join(settings.BASE_DIR, 'assets', 'classifier_model.h5')
 
@@ -20,6 +24,7 @@ def classify_data(data):
     prediction = model.predict(features)
     return 'Malignant' if prediction[0][0] < 0.5 else 'Benign'
 
+
 def train_model(data):
     print(data)
     features = np.array([
@@ -37,9 +42,6 @@ def train_model(data):
     else:
         target = np.array([2])
 
-
-    print(features)
-    print(target)
     model.fit(features, target, epochs=50, batch_size=32)
 
     static_dirs = getattr(settings, "STATICFILES_DIRS", [])
@@ -48,6 +50,29 @@ def train_model(data):
     else:
         assets_root = os.path.join(settings.BASE_DIR, "assets")
     os.makedirs(assets_root, exist_ok=True)
-
     out_path = os.path.join(assets_root, "classifier_model.h5")
     model.save(out_path)
+
+    model_params = {
+        'weights': [],
+        'architecture': model.to_json()
+    }
+    
+    for layer in model.layers:
+        layer_weights = layer.get_weights()
+        if layer_weights: 
+            model_params['weights'].append({
+                'layer_name': layer.name,
+                'weights': [w.tolist() for w in layer_weights]
+            })
+    
+    buffer = io.BytesIO()
+    model.save(buffer, save_format='h5')
+    model_bytes = buffer.getvalue()
+    params_base64 = base64.b64encode(model_bytes).decode('utf-8')
+    
+    return {
+        'params_json': json.dumps(model_params),
+        'params_base64': params_base64,
+        'timestamp': datetime.now().isoformat()
+    }
